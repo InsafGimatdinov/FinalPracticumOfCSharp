@@ -12,26 +12,49 @@ void FillArray(int[] arrayOfFill)
 
 int[] PrintArray(int[] arrayOfPrint)
 {
+    if (arrayOfPrint.Length == 0)
+    {
+        Console.WriteLine("Пустой массив");
+    }
     for (int i = 0; i < arrayOfPrint.Length; i++)
     {
-        System.Console.Write($"[{i}]:{arrayOfPrint[i]} ");
+        Console.Write($"[{i}]:{arrayOfPrint[i]} ");
     }
+    return arrayOfPrint;
 }
 
-int[] NewArrayOfFill(int[] array1)
+int MoreEightNumberCounter(int[] array1)
 {
-    int[] newArray1 = new int[array1.Length];
+    int eightCounter = 0;
+    foreach (int item in array1)
+    {
+        if (item > 8)
+        {
+            eightCounter++;
+        }
+    }
+    return eightCounter;
+}
+
+int[] CreateNewArray(int[] array1)
+{
+    int[] finalArray = new int[MoreEightNumberCounter(array1)];
+    int j = 0;
     for (int i = 0; i < array1.Length; i++)
     {
         if (array1[i] > 8)
         {
-
+            finalArray[j] = array1[i];
+            j++;
         }
     }
-    return newArray1;
+    return finalArray;
 }
 
 int[] array1 = new int[10];
 FillArray(array1);
 PrintArray(array1);
-
+Console.WriteLine();
+Console.WriteLine();
+int[] finalArray = CreateNewArray(array1);
+PrintArray(finalArray);
